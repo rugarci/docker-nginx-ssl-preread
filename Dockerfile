@@ -33,7 +33,7 @@ RUN CONFARGS=$(nginx -V 2>&1 | sed -n -e 's/^.*arguments: //p') \
   rm -rf /tmp/nginx-$NGINX_VERSION
 
 FROM nginx:1.21.4-alpine
-COPY --from=builder /usr/src/nginx/nginx-${NGINX_VERSION}/objs/*_module.so /etc/nginx/modules/
+COPY --from=builder /usr/src/nginx /etc/nginx/src
 COPY --from=builder /usr/sbin/nginx /usr/sbin/nginx
 
 EXPOSE 80
